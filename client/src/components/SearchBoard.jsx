@@ -49,11 +49,11 @@ function SearchBoard() {
                                 <img src={item.photos[0]} className="rounded-3xl" />
                             </div>
                             <div className="ml-8 relative">
-                                <Link to={`/view/${item.eid}`} target="_blank">
+                                <a href={item.url} target="_blank">
                                     <h1 className="TITLE text-2xl font-semibold">{item.title}</h1>
-                                </Link>
+                                </a>
                                 <p className="DESCRIPT text-lg text-slate-500 mt-2">{item.description.slice(0, 100)} ...</p>
-                                <h1 className="text-teal-500 underline"><Link to={`/view/${item.eid}`} target="_blank" className="w-fit">อ่านต่อ</Link></h1>
+                                <h1 className="text-teal-500 underline"><a href={item.url} target="_blank" className="w-fit">อ่านต่อ</a></h1>
                                 <h1 className="CATEGORY text-lg text-slate-600 mt-2 flex">หมวด
                                     {item.tags.map((tag, index) => {
                                         if (index !== length - 1) {
