@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 import axios from 'axios'
 
 function SearchBoard() {
@@ -23,6 +22,14 @@ function SearchBoard() {
         getData(message)
     }, [message])
 
+    const handleCategory = (tag) => {
+        if (message === "") {
+            setMessage(tag)
+        } else {
+            setMessage(message + " " + tag)
+        }
+    }
+
     return (
         <>
             <div className="flex flex-col items-center py-12 px-32">
@@ -30,8 +37,6 @@ function SearchBoard() {
                 <form className="flex flex-col w-full mt-4 px-10">
                     <label htmlFor="message-text" className="text-lg w-fit">ค้นหาที่เที่ยว</label>
                     <input
-                        minLength={2}
-                        debounceTimeout={500}
                         id="message-text"
                         name="message-text"
                         type="text"
@@ -44,11 +49,11 @@ function SearchBoard() {
                 {data.map((item) => {
                     let length = item.tags.length
                     return (
-                        <div key={item.eid} className="flex mb-12">
+                        <div key={item.eid} className="flex mb-12 relative">
                             <div className="BIG-IMAGE w-1/3 max-h-[450px] overflow-hidden flex items-center rounded-3xl">
                                 <img src={item.photos[0]} className="rounded-3xl" />
                             </div>
-                            <div className="ml-8 relative">
+                            <div className="ml-8">
                                 <a href={item.url} target="_blank">
                                     <h1 className="TITLE text-2xl font-semibold">{item.title}</h1>
                                 </a>
@@ -58,13 +63,13 @@ function SearchBoard() {
                                     {item.tags.map((tag, index) => {
                                         if (index !== length - 1) {
                                             return (
-                                                <h1 className="mx-2 underline">{tag}</h1>
+                                                <h1 className="mx-2 underline cursor-pointer" onClick={() => handleCategory(tag)}>{tag}</h1>
                                             )
                                         } else {
                                             return (
                                                 <>
                                                     <h1 className="mx-2">และ</h1>
-                                                    <h1 className="mx-2 underline">{tag}</h1>
+                                                    <h1 className="mx-2 underline cursor-pointer" onClick={() => handleCategory(tag)}>{tag}</h1>
                                                 </>
                                             )
                                         }
