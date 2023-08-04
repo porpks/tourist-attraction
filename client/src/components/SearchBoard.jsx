@@ -29,6 +29,9 @@ function SearchBoard() {
             setMessage(message + " " + tag)
         }
     }
+    const handleCopy = (text) => {
+        navigator.clipboard.writeText(text)
+    }
 
     return (
         <>
@@ -78,7 +81,7 @@ function SearchBoard() {
                                     {item.photos.map((image, index) => {
                                         if (index !== 0) {
                                             return (
-                                                <div className="w-[120px] h-[120px] mt-4 mr-8">
+                                                <div className="w-[120px] h-[120px] mt-4 mr-8 hover:scale-110">
                                                     <img src={image} className="h-full rounded-2xl" />
                                                 </div>
                                             )
@@ -86,9 +89,11 @@ function SearchBoard() {
                                     })}
                                 </div>
                                 <div
-                                    className="text-teal-500 text-2xl rounded-full border-2 border-teal-500 p-1 absolute right-0 bottom-0 hover:bg-teal-500 hover:text-white hover:cursor-pointer">
+                                    className="text-teal-500 text-2xl rounded-full border-2 border-teal-500 p-1 absolute right-0 bottom-0 hover:bg-teal-500 hover:text-white hover:cursor-pointer shadow transform active:scale-75 transition-transform"
+                                    onClick={() => handleCopy(item.url)}>
                                     <i class="fa-solid fa-link"></i>
                                 </div>
+                                {/* <h1 className="absolute -right-10 bottom-12 bg-slate-300 rounded text-sm px-2">copy to clipboard</h1> */}
                             </div>
                         </div>
                     )
