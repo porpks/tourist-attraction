@@ -110,7 +110,7 @@ function SearchBoard() {
                     )
                 })}
             </div>
-            {/* <h1 className="rounded text-xl px-2 fixed bottom-6 right-10">copy to clipboard</h1> */}
+            {isCpoy ? <h1 className="text-xl text-white bg-black bg-opacity-80 px-6 py-2 rounded fixed bottom-6 right-8">copy to clipboard</h1> : null}
             {showPhoto ? <>
                 <div className="SHOW-PHOTO flex justify-center items-center w-full h-[100vh] fixed top-0 left-0 bg-black bg-opacity-60">
                     <div className="max-w-[50vw] max-h-[80vh] relative">
